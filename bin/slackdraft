@@ -9,32 +9,41 @@ class App
 
   leak_exceptions true
 
+  # Set Version
   version Slackdraft::VERSION
   description "Slack with less Kurt Russell"
 
+  # This is the main instructions
   main do |url|
+
+    # Create instance
     slack = Slackdraft::Message.new(url)
     slack.icon_url    = options[:icon]
     slack.icon_emoji  = options[:emoji]
     slack.username    = options[:username]
     slack.channel     = options[:channel]
     slack.text        = options[:message]
+
+    # Send it, and check response
     if slack.send!
       Slackdraft::success("Message successful")
     end
     
   end
 
+  # These are the options
   on('-c', '--channel CHANNEL', "Channel to send message to")
   on('-u', '--username USER',   "User to send message as")
   on('-m', '--message MESSAGE', "Message to send")
   on('-e', '--emoji EMOJI',     "Emoji to prefix message with")
   on('-i', '--icon ICON',       "Icon to prefix message with")
   
+  # Grab to webhook url
   arg :url
 
   begin
 
+    # No Args?
     if ARGV.empty?
       Slackdraft::fatal("No options given; see slackdraft --help for options.")
     end
