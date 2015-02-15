@@ -1,0 +1,2 @@
+runtime: ruby21
+run: exec bin/slackdraft
