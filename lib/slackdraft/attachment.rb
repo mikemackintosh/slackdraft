@@ -39,24 +39,6 @@ module Slackdraft
         payload
     end
 
-    # Send the message!
-    def send!
-
-      payload = 
-      
-      # Send the request
-      request = HTTParty.post(self.target, :body => {
-        :payload => generate_payload.to_json
-      })
-
-      unless request.code.eql? 200
-        false
-      end
-
-      true
-
-    end
-
   end
 
 end

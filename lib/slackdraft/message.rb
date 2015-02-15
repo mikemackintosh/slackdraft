@@ -1,9 +1,9 @@
 module Slackdraft
   class Message < Slackdraft::Base
-    
+
     # Attributes
     fattr username:   'slackdraft'
-    fattr channel:    '#slackdraft'
+    fattr channel:    '#general'
     fattr icon_emoji: ':fire:'
     fattr icon_url:   ''
     fattr text:       ''
@@ -49,6 +49,7 @@ module Slackdraft
 
     end
 
+    # Generate the payload if stuff was provided
     def generate_payload
         payload = {}
         payload[:channel]    = self.channel    unless self.channel.nil?
@@ -60,20 +61,5 @@ module Slackdraft
         payload
     end
 
-    # Send the message!
-    def send!
-      
-      # Send the request
-      request = HTTParty.post(self.target, :body => {
-        :payload => generate_payload.to_json
-      })
-
-      unless request.code.eql? 200
-        false
-      end
-
-      true
-
-    end
   end
 end
