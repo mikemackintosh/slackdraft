@@ -4,24 +4,26 @@ module Slackdraft
 
     fattr fallback: "This message was sent with Slackdraft"
     fattr color: "#439FE0"
-    fattr pretext: ""
+    fattr pretext: nil
 
-    fattr author_name: ""
-    fattr author_link: ""
-    fattr author_icon: ""
+    fattr author_name: nil
+    fattr author_link: nil
+    fattr author_icon: nil
 
-    fattr title: ""
-    fattr title_link: ""
+    fattr title: nil
+    fattr title_link: nil
 
-    fattr text: ""
+    fattr text: nil
     fattr fields: []
 
-    fattr image_url: ""
+    fattr image_url: nil
 
-    def add_field(title, value, short=false)
+    # Short defines if it's 1 column or not, default: not
+    def add_field(title, value, short=true)
         fields.push({:title => title, :value => value, :short => short })
     end
 
+    # Generate the payload for slack attachments
     def generate_payload
         payload = {}
         payload[:fallback]    = self.fallback    unless self.fallback.nil?
@@ -33,8 +35,14 @@ module Slackdraft
         payload[:title]       = self.title       unless self.title.nil?
         payload[:title_link]  = self.title_link  unless self.title_link.nil?
         payload[:text]        = self.text        unless self.text.nil?
-        payload[:fields]      = self.fields      unless self.fields.nil?
+        
+        unless self.fields.nil?
+            payload[:fields]      = self.fields if self.fields.length > 0
+        end
+
         payload[:image_url]   = self.image_url   unless self.image_url.nil?
+
+        puts payload.inspect
 
         payload
     end

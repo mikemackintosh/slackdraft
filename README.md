@@ -3,6 +3,13 @@ Simplest way to send messages to Slack.
 
 ![TravisCI](https://travis-ci.org/mikemackintosh/slackdraft.svg)
 
+# Installation
+
+Like any other gem:
+
+    gem install slackdraft
+
+
 # Ruby Usage
 
 Usage is very simple:
@@ -30,6 +37,8 @@ Usage is very simple:
     # Send the message
     slack.send!
       #-> true/false
+
+For more examples, see the `examples/` directory.
 
 # Command-line Usage
 
