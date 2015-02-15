@@ -1,6 +1,8 @@
 # slackdraft
 Simplest way to send messages to Slack.
 
+![TravisCI](https://travis-ci.org/mikemackintosh/slackdraft.svg)
+
 # Ruby Usage
 
 Usage is very simple:
