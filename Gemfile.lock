@@ -1,8 +1,11 @@
 PATH
   remote: .
   specs:
-    slackdraft (0.7.6c)
+    slackdraft (0.7.7)
+      fattr
       httparty
+      methadone
+      paint
 
 GEM
   remote: https://rubygems.org/
@@ -11,11 +14,15 @@ GEM
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     diff-lcs (1.2.5)
+    fattr (2.2.2)
     httparty (0.13.3)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     json (1.8.2)
+    methadone (1.8.0)
+      bundler
     multi_xml (0.5.5)
+    paint (0.9.0)
     rake (10.4.2)
     rspec (3.2.0)
       rspec-core (~> 3.2.0)

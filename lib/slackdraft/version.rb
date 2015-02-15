@@ -1,3 +1,3 @@
 module Slackdraft
-  VERSION = '0.7.6c'
+  VERSION = '0.7.7'
 end

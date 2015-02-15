@@ -2,12 +2,50 @@
 # coding: utf-8
 
 require 'slackdraft'
+require 'methadone'
 
-slack = Slackdraft::Message.new 'https://hooks.slack.com/services/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'
-#slack.icon = "this"
-#slack.icon_emoji = ":fire:"
-slack.channel = "#slackdraft"
-slack.text = ["Testing *formatting* and", "> this should be"]
-slack.send!
+class App
+  include Methadone::Main
 
-puts slack.inspect
+  leak_exceptions true
+
+  version Slackdraft::VERSION
+  description "Slack with less Kurt Russell"
+
+  main do |url|
+    slack = Slackdraft::Message.new(url)
+    slack.icon_url    = options[:icon]
+    slack.icon_emoji  = options[:emoji]
+    slack.username    = options[:username]
+    slack.channel     = options[:channel]
+    slack.text        = options[:message]
+    if slack.send!
+      Slackdraft::success("Message successful")
+    end
+    
+  end
+
+  on('-c', '--channel CHANNEL', "Channel to send message to")
+  on('-u', '--username USER',   "User to send message as")
+  on('-m', '--message MESSAGE', "Message to send")
+  on('-e', '--emoji EMOJI',     "Emoji to prefix message with")
+  on('-i', '--icon ICON',       "Icon to prefix message with")
+  
+  arg :url
+
+  begin
+
+    if ARGV.empty?
+      Slackdraft::fatal("No options given; see slackdraft --help for options.")
+    end
+
+    go!
+
+ rescue Interrupt
+    print "\b\b\n"; # Remove ^C from screen
+    Slackdraft::fatal("Caught interrupt; exiting.")
+  rescue => e
+    Slackdraft::fatal("An error occurred: #{e.class.name}: #{e.message}")
+  end
+
+end
