@@ -1,6 +1,34 @@
 # slackdraft
 Simplest way to send messages to Slack.
 
+# Ruby Usage
+
+Usage is very simple:
+
+    require 'slackdraft'
+    url = "https://slack/webhook/url"
+    slack = Slackdraft::Message.new(url)
+    
+    # Url of the icon or emoji
+    # slack.icon_url    = "https://..."
+    slack.icon_emoji  = ":fire:"
+    
+    # Set the bot username
+    slack.username    = "SlackDraft"
+    
+    # Set the channel
+    slack.channel     = "#general"
+    
+    # Set text
+    slack.text         = "Your message here! _*And can have* formatting_"
+    
+    # Or you can pass text in as an array
+    # slack.text        = ["Your message here!", ">_*And can have* formatting_"]
+
+    # Send the message
+    slack.send!
+      #-> true/false
+
 # Command-line Usage
 
 It's dumb simple. Instead of using `curl`, use this:
