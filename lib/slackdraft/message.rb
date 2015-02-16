@@ -21,6 +21,7 @@ module Slackdraft
       @channel
     end
 
+    # Add an attachment
     def add_attachment(attachment)
       self.attachments.push(attachment.to_h)
     end
@@ -35,10 +36,12 @@ module Slackdraft
       return ':fire:' if @icon_emoji.nil?
     end
 
+    # Reference a channel
     def refchannel(channel)
       "<#C024BE7LR|#{channel}>"
     end
 
+    # Reference a user
     def refuser(user)
       "<@U024BE7LH|#{user}>"
     end
@@ -51,7 +54,6 @@ module Slackdraft
       end
       
       @text
-
     end
 
     # Generate the payload if stuff was provided

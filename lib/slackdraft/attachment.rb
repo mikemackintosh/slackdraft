@@ -18,9 +18,9 @@ module Slackdraft
 
     fattr image_url:  nil
 
+    # Capture the url if we pass it in
     def initialize(url=nil)
       unless url.nil?
-        puts "setting url"
         @target = url
       end
     end
@@ -31,7 +31,7 @@ module Slackdraft
     end
 
     # Generate the payload for slack attachments
-    def generate_payload
+    def generate_attachment
         payload = {}
         payload[:fallback]    = self.fallback    unless self.fallback.nil?
         payload[:color]       = self.color       unless self.color.nil?
@@ -52,12 +52,14 @@ module Slackdraft
         payload
     end
 
+    # To hash, for use in Message
     def to_h
-        generate_payload
+        generate_attachment
     end
 
+    # Send it directly from Attachment
     def send!
-        @attachments = generate_payload
+        add_attachment(generate_attachment)
         super
     end
 
