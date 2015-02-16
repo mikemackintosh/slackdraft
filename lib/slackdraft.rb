@@ -8,6 +8,7 @@ require 'slackdraft/base'
 require 'slackdraft/message'
 require 'slackdraft/version'
 require 'slackdraft/attachment'
+require 'slackdraft/format/init'
 
 module Slackdraft
   

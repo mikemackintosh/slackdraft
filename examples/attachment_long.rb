@@ -25,7 +25,7 @@ attachment.author_icon = ":skull:"
 attachment.title =  "By Mike Mackintosh"
 attachment.title_link = "https://github.com/mikemackintosh"
 
-attachment.text = "This is pretty cool"
+attachment.message = "This is pretty cool"
 
 attachment.add_field("col 1", "blahblahblah")
 attachment.add_field("col 2", "derpherp")
