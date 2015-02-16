@@ -11,6 +11,17 @@ Like any other gem:
 gem install slackdraft
 ```
 
+# Features
+
+I created the gem to allow for really simple integration into Slack. Some of the features include:
+
+  - Formatting Support
+  - User(`@channel` and `@mike`) and Channel (`#channel`) Notification Support
+  - Awesome Attachment Support
+  - Command Line Utility
+
+See examples of pre-formated alerts in the [examples/formatted/](https://github.com/mikemackintosh/slackdraft/tree/master/examples/formatted).
+
 # Ruby Usage
 
 Usage is very simple:
