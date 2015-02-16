@@ -20,7 +20,7 @@ module Slackdraft
 
     # Send the message!
     def send!
-      
+
       # Send the request
       request = HTTParty.post(self.target, :body => {
         :payload => generate_payload.to_json

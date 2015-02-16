@@ -36,24 +36,19 @@ module Slackdraft
       return ':fire:' if @icon_emoji.nil?
     end
 
-    # Reference a channel
-    def refchannel(channel)
-      "<#C024BE7LR|#{channel}>"
-    end
-
-    # Reference a user
-    def refuser(user)
-      "<@U024BE7LH|#{user}>"
+    # Parse username and channels
+    def parse_usernames_and_channels(text)
+      text.gsub(/(@\w+)/, '<\1>').gsub(/(#\w+)/, '<\1>')
     end
 
     # Set the text of the message
     def text
       
       if @text.kind_of?(Array)
-        return @text.join("\n")
+        return parse_usernames_and_channels(@text.join("\n"))
       end
       
-      @text
+      parse_usernames_and_channels(@text)
     end
 
     # Generate the payload if stuff was provided
