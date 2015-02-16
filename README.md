@@ -1,7 +1,7 @@
 # slackdraft
 Simplest way to send messages to Slack.
 
-![TravisCI](https://travis-ci.org/mikemackintosh/slackdraft.svg)
+[![TravisCI](https://travis-ci.org/mikemackintosh/slackdraft.svg)](https://travis-ci.org/mikemackintosh/slackdraft)
 
 # Installation
 
