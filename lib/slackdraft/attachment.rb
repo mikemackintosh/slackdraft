@@ -1,22 +1,29 @@
 module Slackdraft
 
-  class Attachment < Base
+  class Attachment < Slackdraft::Message
 
     fattr fallback: "This message was sent with Slackdraft"
-    fattr color: "#439FE0"
-    fattr pretext: nil
+    fattr color:    "#439FE0"
+    fattr pretext:  nil
 
     fattr author_name: nil
     fattr author_link: nil
     fattr author_icon: nil
 
-    fattr title: nil
+    fattr title:      nil
     fattr title_link: nil
 
-    fattr text: nil
-    fattr fields: []
+    fattr text:       nil
+    fattr fields:     []
 
-    fattr image_url: nil
+    fattr image_url:  nil
+
+    def initialize(url=nil)
+      unless url.nil?
+        puts "setting url"
+        @target = url
+      end
+    end
 
     # Short defines if it's 1 column or not, default: not
     def add_field(title, value, short=true)
@@ -42,9 +49,16 @@ module Slackdraft
 
         payload[:image_url]   = self.image_url   unless self.image_url.nil?
 
-        puts payload.inspect
-
         payload
+    end
+
+    def to_h
+        generate_payload
+    end
+
+    def send!
+        @attachments = generate_payload
+        super
     end
 
   end

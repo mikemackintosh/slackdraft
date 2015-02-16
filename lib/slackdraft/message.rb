@@ -7,6 +7,7 @@ module Slackdraft
     fattr icon_emoji: ':fire:'
     fattr icon_url:   ''
     fattr text:       ''
+    fattr attachments: []
 
     # Set the api call username
     def username
@@ -18,6 +19,10 @@ module Slackdraft
     def channel
       return '#general' if @channel.nil?
       @channel
+    end
+
+    def add_attachment(attachment)
+      self.attachments.push(attachment.to_h)
     end
 
     # Set the icon URL and default to the emoji
@@ -52,11 +57,12 @@ module Slackdraft
     # Generate the payload if stuff was provided
     def generate_payload
         payload = {}
-        payload[:channel]    = self.channel    unless self.channel.nil?
-        payload[:username]   = self.username   unless self.username.nil?
-        payload[:icon_url]   = self.icon_url   unless self.icon_url.nil?
-        payload[:icon_emoji] = self.icon_emoji unless self.icon_emoji.nil?
-        payload[:text]       = self.text       unless self.text.nil?
+        payload[:channel]     = self.channel    unless self.channel.nil?
+        payload[:username]    = self.username   unless self.username.nil?
+        payload[:icon_url]    = self.icon_url   unless self.icon_url.nil?
+        payload[:icon_emoji]  = self.icon_emoji unless self.icon_emoji.nil?
+        payload[:text]        = self.text       unless self.text.nil?
+        payload[:attachments] = self.attachments unless self.attachments.empty?
 
         payload
     end

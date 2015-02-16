@@ -7,12 +7,13 @@ require 'slackdraft'
 url = "https://hooks.slack.com/services/xxxxxxxxxx"
 
 # Create instance
-attachment = Slackdraft::Attachment.new url
+slack = Slackdraft::Message.new(url)
+slack.text = "Test"
+slack.username = "johndoe"
+slack.channel = "#slackdraft"
 
-attachment.text = "Test"
-attachment.username = "johndoe"
-attachment.channel = "#slackdraft"
-
+# Create an Attachment
+attachment = Slackdraft::Attachment.new
 attachment.fallback    = "Fallback text!!!!"
 attachment.color = "#439FE0"
 attachment.pretext ="Hmm where?"
@@ -29,7 +30,10 @@ attachment.text = "This is pretty cool"
 attachment.add_field("col 1", "blahblahblah")
 attachment.add_field("col 2", "derpherp")
 
+# Add the attachment back to Slack::Message
+slack.add_attachment(attachment)
+
 # Send it, and check response
-if attachment.send!
+if slack.send!
   Slackdraft::success("Message successful")
 end
