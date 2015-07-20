@@ -28,7 +28,7 @@ class App
     if slack.send!
       Slackdraft::success("Message successful")
     end
-    
+
   end
 
   # These are the options
@@ -37,7 +37,7 @@ class App
   on('-m', '--message MESSAGE', "Message to send")
   on('-e', '--emoji EMOJI',     "Emoji to prefix message with")
   on('-i', '--icon ICON',       "Icon to prefix message with")
-  
+
   # Grab to webhook url
   arg :url
 
